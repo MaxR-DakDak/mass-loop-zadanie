@@ -19,11 +19,11 @@
          <div class="page__input-blocks">
             <div class="page__input-block">
                <div class="title title_line20 title_extra-small">Ile pojemników na szkło zapełniasz miesięcznie?</div>
-               <input class="page__input text" type="text" name="" id="">
+               <input class="page__input text" type="text" name="">
             </div>
             <div class="page__input-block page__input-block_small">
                <div class="title title_line20 title_extra-small">Ile płacisz za wywóz jednego pojemnika na szkło?</div>
-               <input class="page__input text" type="text" name="" id="">
+               <input class="page__input text" type="text" name="">
             </div>
          </div>
          <div class="page__result">
@@ -52,7 +52,8 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
-$text_color_21: #212121;
+$mediaSmall: 991.98px;
+$textColor: #212121;
 
 body {
    font-family: 'Montserrat', sans-serif;
@@ -68,7 +69,7 @@ body {
    overflow-x: hidden;
    text-align: center;
 
-   @media screen and (max-width: 575.98px) {
+   @media screen and (max-width: $mediaSmall) {
       padding-left: 20px;
       padding-right: 20px;
    }
@@ -78,7 +79,7 @@ body {
       margin-top: 74px;
       padding-left: 1px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          margin-top: 45px;
       }
    }
@@ -86,7 +87,7 @@ body {
    &__img {
       margin-top: 59px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          margin-top: 57px;
          width: 142%;
          height: auto;
@@ -96,7 +97,7 @@ body {
    &__mob-btn{
       display: none;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          display: block;
          position: absolute;
          right: 0;
@@ -116,20 +117,25 @@ body {
       border: 20px solid white;
       border-radius: 30px;
       margin-top: -400px;
+      padding: 59px 339px 64px 358px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          padding: 50px 20px 74px;
          border-width: 15px;
          margin-top: -182px;
          height: 343px;
          width: calc(100% + 70px);
       }
+
+      & div:nth-child(1) {
+         margin-left: -16px;
+      }
    }
 
    &__calculator-title {
       margin-top: 91px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          margin-top: 48px;
       }
    }
@@ -137,7 +143,7 @@ body {
    &__calculator-subtitle {
       margin-top: 40px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          margin-top: 28px;
       }
    }
@@ -148,13 +154,14 @@ body {
       justify-content: center;
       align-items: center;
       flex-wrap: wrap;
-      gap: 20px;
+      gap: 28px;
       width: 100%;
       max-width: 1012px;
       margin-top: 84px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          margin-top: 60px;
+         gap: 20px;
       }
 
       &_block {
@@ -167,7 +174,7 @@ body {
       display: inline-flex;
       gap: 30px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          flex-wrap: wrap;
          gap: 20px
       }
@@ -183,14 +190,15 @@ body {
       border-radius: 15px;
       background-color: #fafafd;
       height: 260px;
+      padding: 38px 72px 52px 76px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          height: 240px;
          padding: 41px 34px 40px 34px
       }
 
       &_small {
-         @media screen and (max-width: 575.98px) {
+         @media screen and (max-width: $mediaSmall) {
             height: 230px;
          }
       }
@@ -200,11 +208,11 @@ body {
       height: 66px;
       max-width: 219px;
       border-radius: 15px;
-      border: 1px solid #{$text_color_21};
+      border: 1px solid #{$textColor};
       text-align: center;
       outline: none;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          width: 225px;
       }
 
@@ -220,10 +228,10 @@ body {
       width: 100%;
       height: 127px;
       box-sizing: border-box;
-      background-color: #{$text_color_21};
+      background-color: #{$textColor};
       border-radius: 15px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          height: 213px;
       }
    }
@@ -231,7 +239,7 @@ body {
    &__bottom_text {
       margin-top: 82px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          margin-top: 60px;
       }
    }
@@ -251,7 +259,7 @@ body {
       font-size: 24px;
       cursor: pointer;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          margin-top: 62px;
          width: 100%;
          height: 80px;
@@ -265,12 +273,13 @@ body {
    }
 
    &__bottom_title {
-      margin-top: 78px;
+      width: 450px;
+      margin-top: 77px;
+      margin-left: 1px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          margin-top: 60px;
          width: 243px;
-         margin-left: 1px;
       }
    }
 
@@ -282,15 +291,15 @@ body {
 .title {
    font-size: 40px;
    font-weight: 900;
-   color: #{$text_color_21};
+   color: #{$textColor};
 
-   @media screen and (max-width: 575.98px) {
+   @media screen and (max-width: $mediaSmall) {
       font-size: 24px;
    }
 
    &_big {
       font-size: 55px;
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          font-size: 35px;
       }
    }
@@ -298,20 +307,23 @@ body {
    &_small {
       font-size: 28px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          font-size: 20px;
       }
    }
 
    &_extra-small {
       font-size: 20px;
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          font-size: 16px;
       }
    }
 
    &_line20 {
-      line-height: 20px
+      line-height: 30px;
+      @media screen and (max-width: $mediaSmall) {
+         line-height: 20px
+      }
    }
 
    &_white {
@@ -322,10 +334,10 @@ body {
 .text {
    font-size: 20px;
    font-weight: 400;
-   color: #{$text_color_21};
+   color: #{$textColor};
    line-height: 1.59;
 
-   @media screen and (max-width: 575.98px) {
+   @media screen and (max-width: $mediaSmall) {
       font-size: 16px;
    }
 

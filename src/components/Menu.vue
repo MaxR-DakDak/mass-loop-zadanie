@@ -61,7 +61,8 @@ export default {
 <!--scoped-->
 <style scoped lang="scss">
 
-$text_color: #212121;
+$mediaSmall: 991.98px;
+$textColor: #212121;
 
 @mixin keyframes($animation-name) {
    @-webkit-keyframes #{$animation-name} {
@@ -113,9 +114,9 @@ $text_color: #212121;
    box-shadow: 0 4px 24px -5px rgba(0, 0, 0, 0.15);
    padding-left: 110px;
    padding-right: 110px;
-   color: #{$text_color};
+   color: #{$textColor};
 
-   @media screen and (max-width: 575.98px) {
+   @media screen and (max-width: $mediaSmall) {
       padding-left: 20px;
       padding-right: 20px;
    }
@@ -124,7 +125,7 @@ $text_color: #212121;
       height: 51px;
       width: auto;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          height: 41.38px;
          width: auto;
       }
@@ -145,7 +146,7 @@ $text_color: #212121;
       gap: 64px;
       margin-left: 83px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          display: none;
       }
 
@@ -158,7 +159,7 @@ $text_color: #212121;
          z-index: -1;
          background-color: white;
 
-         @media screen and (max-width: 575.98px) {
+         @media screen and (max-width: $mediaSmall) {
             &.active {
                display: flex;
                flex-direction: column;
@@ -176,9 +177,9 @@ $text_color: #212121;
       text-decoration: none;
       font-size: 16px;
       font-weight: 400;
-      color: #{$text_color};
+      color: #{$textColor};
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          font-size: 15px;
          font-weight: 500;
          line-height: 18px;
@@ -188,7 +189,7 @@ $text_color: #212121;
          margin-left: -6px;
       }
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          &_mobile1 {
             margin-left: -22px;
          }
@@ -210,7 +211,7 @@ $text_color: #212121;
       align-items: center;
       gap: 26px;
 
-      @media screen and (max-width: 575.98px) {
+      @media screen and (max-width: $mediaSmall) {
          gap: 29px;
       }
    }
@@ -242,7 +243,7 @@ $text_color: #212121;
       cursor: pointer;
 
       &_desktop{
-         @media screen and (max-width: 575.98px) {
+         @media screen and (max-width: $mediaSmall) {
             display: none;
          }
       }
@@ -253,7 +254,12 @@ $text_color: #212121;
    }
 
    &__hamburger {
+      display: none;
       cursor: pointer;
+
+      @media screen and (max-width: $mediaSmall) {
+         display: block;
+      }
 
       &.active {
          -webkit-transition: all 0.2s ease-in-out;
@@ -296,7 +302,7 @@ $text_color: #212121;
    &__hamburger-line {
       width: 36px;
       height: 2px;
-      background: #{$text_color};
+      background: #{$textColor};
       margin: 10px auto;
       -webkit-transition: all 0.2s ease-in-out;
       -o-transition: all 0.2s ease-in-out;
