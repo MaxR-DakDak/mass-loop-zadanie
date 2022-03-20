@@ -93,6 +93,16 @@ body {
    margin: 0;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+   -webkit-appearance: none;
+   margin: 0;
+}
+
+input[type=number] {
+   -moz-appearance: textfield;
+}
+
 ::placeholder {
    color: #C2C2C2;
    font-weight: 300;
