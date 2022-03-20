@@ -1,5 +1,7 @@
 # vue_project
 
+GitHub Pages Link: https://maxr-dakdak.github.io/mass-loop-zadanie/
+
 ## Project setup
 ```
 npm install
