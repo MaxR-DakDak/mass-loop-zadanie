@@ -19,22 +19,28 @@
          <div class="page__input-blocks">
             <div class="page__input-block">
                <div class="title title_line20 title_extra-small">Ile pojemników na szkło zapełniasz miesięcznie?</div>
-               <input class="page__input text" type="text" name="">
+               <input class="page__input text" type="number" v-model="container" placeholder="20">
             </div>
             <div class="page__input-block page__input-block_small">
                <div class="title title_line20 title_extra-small">Ile płacisz za wywóz jednego pojemnika na szkło?</div>
-               <input class="page__input text" type="text" name="">
+               <input class="page__input text" type="number" v-model="pay" placeholder="20">
             </div>
          </div>
          <div class="page__result">
-            <div class="title title_white title_extra-small"> Dzięki kruszarce zaoszczędzisz 900 zł rocznie.</div>
+            <div class="page__result-text title title_white title_extra-small">
+               <div> Dzięki kruszarce zaoszczędzisz</div>
+               <div class="title title_white title_opacity title_medium" id="calcSumDiv">{{ calcSum }} zł</div>
+               <div>rocznie.</div>
+            </div>
          </div>
       </div>
 
       <!-- bottom -->
       <div class="page__bottom_text text">To na co wydasz zaoszczędzoną gotówkę?</div>
       <div class="page__btn">KUP<span class="page__btn_price">8499 zł</span></div>
-      <div class="page__bottom_title title title_small"> <span class="page__bottom-margin"> Brzmi dobrze? </span> Uważaj. Dopiero się rozkręcamy!</div>
+      <div class="page__bottom_title title title_small">
+         <span class="page__bottom-margin"> Brzmi dobrze? </span>Uważaj. Dopiero się rozkręcamy!
+      </div>
    </div>
 </template>
 
@@ -45,6 +51,31 @@ export default {
    name: 'App',
    components: {
       Menu,
+   },
+   data() {
+      return {
+         container: null,
+         pay: null,
+         calcSum: 900,
+      }
+   },
+   methods: {
+      calcCost() {
+         if (this.container && this.pay) {
+            this.calcSum = Math.round(12 * (
+                this.container * this.pay - this.container * this.pay / 5))
+            document.getElementById('calcSumDiv').classList.remove("title_opacity");
+            document.getElementById('calcSumDiv').classList.add("title_orange");
+         }
+      }
+   },
+   watch: {
+      container() {
+         this.calcCost();
+      },
+      pay() {
+         this.calcCost();
+      },
    }
 }
 </script>
@@ -52,12 +83,19 @@ export default {
 <style lang="scss">
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap');
 
-$mediaSmall: 991.98px;
+$mediaSmall: 767.98px;
+$mediaMedium: 991.98px;
+$mediaLarge: 1439.98px;
 $textColor: #212121;
 
 body {
    font-family: 'Montserrat', sans-serif;
    margin: 0;
+}
+
+::placeholder {
+   color: #C2C2C2;
+   font-weight: 300;
 }
 
 .page {
@@ -69,7 +107,7 @@ body {
    overflow-x: hidden;
    text-align: center;
 
-   @media screen and (max-width: $mediaSmall) {
+   @media screen and (max-width: $mediaMedium) {
       padding-left: 20px;
       padding-right: 20px;
    }
@@ -79,7 +117,7 @@ body {
       margin-top: 74px;
       padding-left: 1px;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          margin-top: 45px;
       }
    }
@@ -87,23 +125,26 @@ body {
    &__img {
       margin-top: 59px;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          margin-top: 57px;
-         width: 142%;
+         width: 100%;
          height: auto;
+      }
+
+      @media screen and (max-width: $mediaSmall) {
+         width: 142%;
       }
    }
 
-   &__mob-btn{
+   &__mob-btn {
       display: none;
 
       @media screen and (max-width: $mediaSmall) {
          display: block;
          position: absolute;
          right: 0;
-         bottom: -4px;
+         top: 566px;
       }
-
    }
 
    &__rectangle {
@@ -119,23 +160,34 @@ body {
       margin-top: -400px;
       padding: 59px 339px 64px 358px;
 
-      @media screen and (max-width: $mediaSmall) {
-         padding: 50px 20px 74px;
+
+      @media screen and (max-width: $mediaLarge) {
+         padding: 50px 100px 74px;
+      }
+
+      @media screen and (max-width: $mediaMedium) {
          border-width: 15px;
          margin-top: -182px;
          height: 343px;
          width: calc(100% + 70px);
       }
 
+      @media screen and (max-width: $mediaSmall) {
+         padding: 50px 20px 74px;
+      }
+
       & div:nth-child(1) {
          margin-left: -16px;
+         @media screen and (max-width: $mediaMedium) {
+            margin-left: unset;
+         }
       }
    }
 
    &__calculator-title {
       margin-top: 91px;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          margin-top: 48px;
       }
    }
@@ -143,7 +195,7 @@ body {
    &__calculator-subtitle {
       margin-top: 40px;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          margin-top: 28px;
       }
    }
@@ -159,7 +211,7 @@ body {
       max-width: 1012px;
       margin-top: 84px;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          margin-top: 60px;
          gap: 20px;
       }
@@ -174,7 +226,7 @@ body {
       display: inline-flex;
       gap: 30px;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          flex-wrap: wrap;
          gap: 20px
       }
@@ -192,13 +244,13 @@ body {
       height: 260px;
       padding: 38px 72px 52px 76px;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          height: 240px;
          padding: 41px 34px 40px 34px
       }
 
       &_small {
-         @media screen and (max-width: $mediaSmall) {
+         @media screen and (max-width: $mediaMedium) {
             height: 230px;
          }
       }
@@ -212,7 +264,7 @@ body {
       text-align: center;
       outline: none;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          width: 225px;
       }
 
@@ -223,7 +275,6 @@ body {
 
    &__result {
       display: flex;
-      justify-content: center;
       align-items: center;
       width: 100%;
       height: 127px;
@@ -231,15 +282,49 @@ body {
       background-color: #{$textColor};
       border-radius: 15px;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          height: 213px;
+      }
+   }
+
+   &__result-text {
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding-left: 225px;
+      padding-top: 1px;
+      padding-right: 223px;
+      box-sizing: border-box;
+      height: 100%;
+
+      & div:nth-child(2) {
+         margin-left: 24px;
+         margin-right: 22px;
+         line-height: 20px;
+      }
+
+      @media screen and (max-width: $mediaSmall) {
+         display: flex;
+         flex-direction: column;
+         justify-content: space-between;
+         padding: 57px 0 42px;
+
+         & div:nth-child(2) {
+            margin-top: 15px;
+            margin-right: 17px;
+         }
+
+         & div:nth-child(3) {
+            margin-left: 3px;
+         }
       }
    }
 
    &__bottom_text {
       margin-top: 82px;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          margin-top: 60px;
       }
    }
@@ -259,7 +344,7 @@ body {
       font-size: 24px;
       cursor: pointer;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          margin-top: 62px;
          width: 100%;
          height: 80px;
@@ -277,13 +362,13 @@ body {
       margin-top: 77px;
       margin-left: 1px;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          margin-top: 60px;
          width: 243px;
       }
    }
 
-   &__bottom-margin{
+   &__bottom-margin {
       margin-left: -3px;
    }
 }
@@ -293,41 +378,60 @@ body {
    font-weight: 900;
    color: #{$textColor};
 
+   @media screen and (max-width: $mediaMedium) {
+      font-size: 30px;
+   }
+
    @media screen and (max-width: $mediaSmall) {
       font-size: 24px;
    }
 
    &_big {
       font-size: 55px;
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          font-size: 35px;
+      }
+   }
+
+   &_medium {
+      font-size: 24px;
+      @media screen and (max-width: $mediaSmall) {
+         font-size: 28px;
       }
    }
 
    &_small {
       font-size: 28px;
 
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          font-size: 20px;
       }
    }
 
    &_extra-small {
       font-size: 20px;
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          font-size: 16px;
       }
    }
 
    &_line20 {
       line-height: 30px;
-      @media screen and (max-width: $mediaSmall) {
+      @media screen and (max-width: $mediaMedium) {
          line-height: 20px
       }
    }
 
    &_white {
       color: white;
+   }
+
+   &_orange {
+      color: #FFB001;
+   }
+
+   &_opacity {
+      opacity: 0.5;
    }
 }
 
@@ -337,7 +441,7 @@ body {
    color: #{$textColor};
    line-height: 1.59;
 
-   @media screen and (max-width: $mediaSmall) {
+   @media screen and (max-width: $mediaMedium) {
       font-size: 16px;
    }
 
